@@ -1,0 +1,3 @@
+- Clone a template that has auth (if possible) and one or more resources
+- Verify it works
+- Start TDD
