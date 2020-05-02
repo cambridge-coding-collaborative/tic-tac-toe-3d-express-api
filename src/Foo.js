@@ -1,19 +1,18 @@
-function getFoo() {
-  return 'Foo!';
+function getFoo () {
+  return 'Foo!'
 }
 
 function sayHello (name) {
-  return 'Hello ' + name;
+  return 'Hello ' + name
 }
 
 class Person {
-
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor (firstName, lastName) {
+    this.firstName = firstName
+    this.lastName = lastName
   }
 
-  fullName() {
+  fullName () {
     return this.firstName + ' ' + this.lastName
   }
 }
