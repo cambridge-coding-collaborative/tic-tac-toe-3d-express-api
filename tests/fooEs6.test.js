@@ -12,4 +12,3 @@ describe('person class tests', () => {
     expect(p.fullName()).toStrictEqual('John Smith')
   })
 })
-
