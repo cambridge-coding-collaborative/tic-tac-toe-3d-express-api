@@ -1,4 +1,4 @@
-import {getFoo, Person} from './Foo'
+import {getFoo, Person} from '../app/helpers/fooForTestingEs6'
 
 describe('function tests', () => {
   it('returns Foo', () => {
