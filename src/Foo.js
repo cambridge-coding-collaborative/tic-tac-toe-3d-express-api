@@ -17,5 +17,4 @@ class Person {
   }
 }
 
-// export {fibonacci, getFoo, Person}
-module.exports = {getFoo, sayHello, Person}
+export {getFoo, sayHello, Person}
