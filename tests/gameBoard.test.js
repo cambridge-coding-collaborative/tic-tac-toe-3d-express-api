@@ -1,25 +1,16 @@
+import { GameBoard } from '../app/helpers/GameBoard'
 const EMPTY_CHAR = ''
-class GameBoard {
-  constructor () {
-    this.board = 1
-  }
 
-  static getDimensionValues (dimension) {
-    if (dimension === 0) {
-      return EMPTY_CHAR
-    } else {
-      let array = []
-      let x
-      for (x in [0, 1, 2, 3]) {
-        array[x] = GameBoard.getDimensionValues(dimension - 1)
-      }
-      return array
-    }
-  }
+function getEmpty4Row () {
+  return [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
+}
 
-  getArray () {
-    return GameBoard.getDimensionValues(3)
-  }
+function getEmpty4x4x4Array () {
+  const level1 = [ getEmpty4Row(), getEmpty4Row(), getEmpty4Row(), getEmpty4Row() ]
+  const level2 = [ getEmpty4Row(), getEmpty4Row(), getEmpty4Row(), getEmpty4Row() ]
+  const level3 = [ getEmpty4Row(), getEmpty4Row(), getEmpty4Row(), getEmpty4Row() ]
+  const level4 = [ getEmpty4Row(), getEmpty4Row(), getEmpty4Row(), getEmpty4Row() ]
+  return [ level1, level2, level3, level4 ]
 }
 
 describe('get new game board', () => {
@@ -29,42 +20,9 @@ describe('get new game board', () => {
   })
 
   it('getArray returns a 4 x 4 x 4 array of blanks', () => {
-    const EMPTY_CHAR = ''
-    const g = new GameBoard()
-    const a = g.getArray()
-    const expectedArray =
-      [
-        // level1
-        [
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
-        ],
-        // level 2
-        [
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
-        ],
-        // level 3
-        [
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
-        ],
-        // level 4
-        [
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR], 
-          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
-        ]
-      ]
-    console.log(a)
-    console.log(expectedArray)
-    expect(a).toStrictEqual(expectedArray)
+    const gameBoard = new GameBoard()
+    const gameArray = gameBoard.getArray()
+    const empty4x4x4Array = getEmpty4x4x4Array()
+    expect(gameArray).toStrictEqual(empty4x4x4Array)
   })
 })
