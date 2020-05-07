@@ -21,6 +21,7 @@ class GameBoard {
 
   move (level, x, y) {
     this.gameBoardArray[level][x][y] = this.playerValue
+    this.playerValue = 'Y'
   }
 
   getArray () {

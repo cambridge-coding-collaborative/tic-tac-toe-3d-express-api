@@ -13,6 +13,13 @@ function getEmpty4x4x4Array () {
   return [ level1, level2, level3, level4 ]
 }
 
+function testMoveAndUpdateExpected (level, x, y, gameBoard, expectedGameArray, expectedPlayerValue) {
+  gameBoard.move(level, x, y)
+  expectedGameArray[level][x][y] = expectedPlayerValue
+  console.log(gameBoard.getArray(), expectedGameArray)
+  expect(gameBoard.getArray()).toStrictEqual(expectedGameArray)
+}
+
 describe('get new game board', () => {
   it('returns a new game board', () => {
     const g = new GameBoard()
@@ -26,12 +33,11 @@ describe('get new game board', () => {
     expect(gameArray).toStrictEqual(empty4x4x4Array)
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('verify 5 moves sets array correctly', () => {
     const gameBoard = new GameBoard()
-    const gameArray = gameBoard.getArray()
     const expectedGameArray = getEmpty4x4x4Array()
-    gameBoard.move(1, 2, 3)
-    expectedGameArray[1][2][3] = 'X'
-    expect(gameBoard.getArray()).toStrictEqual(expectedGameArray)
+    testMoveAndUpdateExpected(2, 3, 0, gameBoard, expectedGameArray, 'X')
+    testMoveAndUpdateExpected(2, 1, 3, gameBoard, expectedGameArray, 'Y')
   })
 })
