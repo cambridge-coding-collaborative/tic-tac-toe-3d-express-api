@@ -1,10 +1,24 @@
+const EMPTY_CHAR = ''
 class GameBoard {
   constructor () {
     this.board = 1
   }
 
+  static getDimensionValues (dimension) {
+    if (dimension === 0) {
+      return EMPTY_CHAR
+    } else {
+      let array = []
+      let x
+      for (x in [0, 1, 2, 3]) {
+        array[x] = GameBoard.getDimensionValues(dimension - 1)
+      }
+      return array
+    }
+  }
+
   getArray () {
-    return Array(4).fill(Array(4).fill(Array(4).fill('')))
+    return GameBoard.getDimensionValues(3)
   }
 }
 
@@ -15,12 +29,42 @@ describe('get new game board', () => {
   })
 
   it('getArray returns a 4 x 4 x 4 array of blanks', () => {
+    const EMPTY_CHAR = ''
     const g = new GameBoard()
     const a = g.getArray()
-    expect(a[1][2][1]).toStrictEqual('')
-    const rowArray = Array(4).fill('')
-    const dimension2 = Array(4).fill(rowArray)
-    const dimension3 = Array(4).fill(dimension2)
-    expect(a).toStrictEqual(dimension3)
+    const expectedArray =
+      [
+        // level1
+        [
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
+        ],
+        // level 2
+        [
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
+        ],
+        // level 3
+        [
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
+        ],
+        // level 4
+        [
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR],
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR], 
+          [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR]
+        ]
+      ]
+    console.log(a)
+    console.log(expectedArray)
+    expect(a).toStrictEqual(expectedArray)
   })
 })
