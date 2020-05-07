@@ -19,10 +19,19 @@ describe('get new game board', () => {
     expect(g).toBeDefined()
   })
 
-  it('getArray returns a 4 x 4 x 4 array of blanks', () => {
+  it('init getArray returns a 4 x 4 x 4 array of blanks', () => {
     const gameBoard = new GameBoard()
     const gameArray = gameBoard.getArray()
     const empty4x4x4Array = getEmpty4x4x4Array()
     expect(gameArray).toStrictEqual(empty4x4x4Array)
+  })
+
+  it('verify 5 moves sets array correctly', () => {
+    const gameBoard = new GameBoard()
+    const gameArray = gameBoard.getArray()
+    const expectedGameArray = getEmpty4x4x4Array()
+    gameBoard.move(1, 2, 3)
+    expectedGameArray[1][2][3] = 'X'
+    expect(gameBoard.getArray()).toStrictEqual(expectedGameArray)
   })
 })

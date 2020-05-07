@@ -3,6 +3,8 @@ const EMPTY_CHAR = ''
 class GameBoard {
   constructor () {
     this.board = 1
+    this.gameBoardArray = GameBoard.getDimensionValues(3)
+    this.playerValue = 'X'
   }
   static getDimensionValues (dimension) {
     if (dimension === 0) {
@@ -17,8 +19,12 @@ class GameBoard {
     }
   }
 
+  move (level, x, y) {
+    this.gameBoardArray[level][x][y] = this.playerValue
+  }
+
   getArray () {
-    return GameBoard.getDimensionValues(3)
+    return this.gameBoardArray
   }
 }
 export { GameBoard }
