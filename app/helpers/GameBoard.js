@@ -21,7 +21,12 @@ class GameBoard {
 
   move (level, x, y) {
     this.gameBoardArray[level][x][y] = this.playerValue
-    this.playerValue = 'Y'
+    if (this.playerValue === 'X') {
+      this.player = 'Y'
+    } else {
+      this.player = 'X'
+    }
+    this.playerValue = this.playerValue === 'X' ? 'Y' : 'X'
   }
 
   getArray () {

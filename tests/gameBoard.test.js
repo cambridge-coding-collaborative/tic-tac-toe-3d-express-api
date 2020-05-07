@@ -16,7 +16,6 @@ function getEmpty4x4x4Array () {
 function testMoveAndUpdateExpected (level, x, y, gameBoard, expectedGameArray, expectedPlayerValue) {
   gameBoard.move(level, x, y)
   expectedGameArray[level][x][y] = expectedPlayerValue
-  console.log(gameBoard.getArray(), expectedGameArray)
   expect(gameBoard.getArray()).toStrictEqual(expectedGameArray)
 }
 
@@ -39,5 +38,6 @@ describe('get new game board', () => {
     const expectedGameArray = getEmpty4x4x4Array()
     testMoveAndUpdateExpected(2, 3, 0, gameBoard, expectedGameArray, 'X')
     testMoveAndUpdateExpected(2, 1, 3, gameBoard, expectedGameArray, 'Y')
+    testMoveAndUpdateExpected(3, 3, 3, gameBoard, expectedGameArray, 'X')
   })
 })
