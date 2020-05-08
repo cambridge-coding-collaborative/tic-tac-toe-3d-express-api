@@ -6,6 +6,7 @@ class GameBoard {
     this.gameBoardArray = GameBoard.getDimensionValues(3)
     this.playerValue = 'X'
   }
+
   static getDimensionValues (dimension) {
     if (dimension === 0) {
       return EMPTY_CHAR
@@ -21,12 +22,14 @@ class GameBoard {
 
   move (level, x, y) {
     this.gameBoardArray[level][x][y] = this.playerValue
-    if (this.playerValue === 'X') {
-      this.player = 'Y'
-    } else {
-      this.player = 'X'
-    }
     this.playerValue = this.playerValue === 'X' ? 'Y' : 'X'
+  }
+
+  moveUsingList (movesArray) {
+    let move
+    for (move of movesArray) {
+      this.move(move[0], move[1], move[2])
+    }
   }
 
   getArray () {

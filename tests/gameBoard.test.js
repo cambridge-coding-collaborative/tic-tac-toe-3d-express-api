@@ -40,4 +40,23 @@ describe('get new game board', () => {
     testMoveAndUpdateExpected(2, 1, 3, gameBoard, expectedGameArray, 'Y')
     testMoveAndUpdateExpected(3, 3, 3, gameBoard, expectedGameArray, 'X')
   })
+
+  it('verify move usling array of moves', () => {
+    const gameBoard1 = new GameBoard()
+    const moves =
+      [ [2, 2, 0], [3, 0, 1],
+        [1, 1, 1], [2, 2, 2],
+        [0, 0, 1], [2, 2, 1]
+      ]
+
+    let move
+    for (move of moves) {
+      gameBoard1.move(move[0], move[1], move[2])
+    }
+
+    const gameBoard2 = new GameBoard()
+    expect(gameBoard1.getArray()).not.toStrictEqual(gameBoard2.getArray())
+    gameBoard2.moveUsingList(moves)
+    expect(gameBoard1.getArray()).toStrictEqual(gameBoard2.getArray())
+  })
 })
